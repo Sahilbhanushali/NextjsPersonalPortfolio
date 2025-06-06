@@ -247,7 +247,8 @@ export default function ContactArea() {
                       label: "Full Name",
                       placeholder: "Steve Milner",
                       value: name,
-                      onChange: (e) => setName(e.target.value),
+                      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                        setName(e.target.value),
                       icon: "far fa-user",
                       error: "Please enter your Name",
                     },
@@ -257,7 +258,8 @@ export default function ContactArea() {
                       label: "Email Address",
                       placeholder: "hello@websitename.com",
                       value: email,
-                      onChange: (e) => setEmail(e.target.value),
+                      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                        setEmail(e.target.value),
                       icon: "far fa-envelope",
                       error: "Please enter your Email",
                     },
@@ -267,7 +269,8 @@ export default function ContactArea() {
                       label: "Subject",
                       placeholder: "Your Subject",
                       value: subject,
-                      onChange: (e) => setSubject(e.target.value),
+                      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                        setSubject(e.target.value),
                       icon: "far fa-user",
                       error: "Please enter your Subject",
                     },
