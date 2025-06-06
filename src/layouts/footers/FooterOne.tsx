@@ -3,21 +3,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
 export default function FooterOne() {
-  const footerRef = useRef(null);
-  const letsWorkRef = useRef(null);
-  const canvasRef = useRef(null);
+  const footerRef = useRef<HTMLElement | null>(null);
+  const letsWorkRef = useRef<HTMLHeadingElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Animation controls
   const letsWorkControls = useAnimation();
-
-  // Detect when "let's work" link is in view
   const letsWorkInView = useInView(letsWorkRef, {
     once: false,
     margin: "-20% 0px",
   });
 
-  // Animation variants
   const linkVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -30,13 +26,11 @@ export default function FooterOne() {
     },
   };
 
-  // Trigger animation on in-view change
   useEffect(() => {
     if (letsWorkInView) letsWorkControls.start("visible");
     else letsWorkControls.start("hidden");
   }, [letsWorkInView, letsWorkControls]);
 
-  // Fallback to ensure visibility on mount
   useEffect(() => {
     setIsMounted(true);
     const timeout = setTimeout(() => {
@@ -52,7 +46,6 @@ export default function FooterOne() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set canvas size to match footer
     const resizeCanvas = () => {
       const footer = footerRef.current;
       if (footer) {
@@ -61,15 +54,14 @@ export default function FooterOne() {
         canvas.style.position = "absolute";
         canvas.style.top = "0";
         canvas.style.left = "0";
-        canvas.style.pointerEvents = "none"; // Allow clicks to pass through
+        canvas.style.pointerEvents = "none";
       }
     };
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Messages for mouse trail
-    const messages = [
+    const messages: string[] = [
       "Email me, ugh",
       "Ping me, now!",
       "Text me, bored",
@@ -82,19 +74,26 @@ export default function FooterOne() {
       "I might reply",
     ];
 
-    // Mouse trail data
-    const boxes = [];
-    let mouseX = null;
-    let mouseY = null;
+    interface Box {
+      x: number;
+      y: number;
+      size: number;
+      color: string;
+      alpha: number;
+      text: string;
+    }
+
+    const boxes: Box[] = [];
+    let mouseX: number | null = null;
+    let mouseY: number | null = null;
     let isHovering = false;
 
     const colors = ["#FF6B00", "#4ECDC4", "#45B7D", "#96CEB4", "#FFEEAD"];
 
-    // Throttle helper
-    function throttle(func, limit) {
-      let lastFunc;
-      let lastRan;
-      return function (...args) {
+    function throttle(func: (...args: any[]) => void, limit: number) {
+      let lastFunc: ReturnType<typeof setTimeout>;
+      let lastRan: number;
+      return function (this: any, ...args: any[]) {
         if (!lastRan) {
           func.apply(this, args);
           lastRan = Date.now();
@@ -110,11 +109,9 @@ export default function FooterOne() {
       };
     }
 
-    // Check for mobile to disable mouse trail
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    // Handle mouse move — throttled to 50ms
-    const handleMouseMove = throttle((e) => {
+    const handleMouseMove = throttle((e: MouseEvent) => {
       if (!footerRef.current || !canvas || isMobile) return;
 
       const rect = canvas.getBoundingClientRect();
@@ -141,10 +138,13 @@ export default function FooterOne() {
       }
     }, 50);
 
-    // Wrap text in box
-    const wrapText = (ctx, text, maxWidth) => {
+    const wrapText = (
+      ctx: CanvasRenderingContext2D,
+      text: string,
+      maxWidth: number
+    ): string[] => {
       const words = text.split(" ");
-      const lines = [];
+      const lines: string[] = [];
       let currentLine = words[0];
 
       for (let i = 1; i < words.length; i++) {
@@ -161,7 +161,6 @@ export default function FooterOne() {
       return lines;
     };
 
-    // Animate boxes and text
     const animate = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
