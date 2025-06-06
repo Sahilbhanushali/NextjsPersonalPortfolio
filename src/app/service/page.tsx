@@ -1,19 +1,27 @@
- 
-import Service from '@/components/service'
-import Wrapper from '@/layouts/Wrapper'
-import { Metadata } from 'next'
-import React from 'react'
+import Service from "@/components/service";
+import Wrapper from "@/layouts/Wrapper";
+import { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: 'Service Nino - Modern Portfolio Next JS Template',
-  description: 'Nino - Personal Portfolio Next JS Template fresh and clean Design. You can use this portfolio template for: agency, personal portfolio, architect agency, photography studios, sound and music, musician, painter portfolio, artworks, art, artist portfolio, web design works, illustrators, trainer, projects, freelance designer. Just take the best Template of your choice, change the text, add your images and done! we have a strong support team which 24/7 days available to support you.',
-}
-
+  title: "Service Sahil - Personal Portfolio Next JS",
+  description:
+    "Explore the services offered by Sahil, a MERN Stack Developer. From web development to consulting, discover how Sahil can help you achieve your digital goals.",
+  keywords: [
+    "Sahil",
+    "MERN Stack Developer",
+    "Portfolio",
+    "Services",
+    "Web Development",
+    "Consulting",
+    "Next.js",
+  ],
+};
 
 export default function index() {
   return (
     <Wrapper>
       <Service />
     </Wrapper>
-  )
+  );
 }

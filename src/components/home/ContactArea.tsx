@@ -37,7 +37,7 @@ export default function ContactArea() {
   // Animation variants
   const textVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
+    visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
