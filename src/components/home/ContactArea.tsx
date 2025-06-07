@@ -80,13 +80,16 @@ export default function ContactArea() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, subject, message }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, subject, message }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to send email");
