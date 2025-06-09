@@ -127,7 +127,7 @@ export default function HeroArea() {
         <div className="row">
           {/* Left Column */}
           <div className="col-lg-3 pt-30">
-            <div className="hero-content" ref={clientReviewsRef}>
+            {/* <div className="hero-content" ref={clientReviewsRef}>
               {clientReviewsText.map((line, index) => (
                 <motion.div
                   key={index}
@@ -140,7 +140,7 @@ export default function HeroArea() {
                   {line}
                 </motion.div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Center Image */}

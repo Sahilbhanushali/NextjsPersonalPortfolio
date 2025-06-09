@@ -31,7 +31,10 @@ export default function HeaderOne() {
                       <NavMenu />
                     </nav>
                   </div>
-                  <div className="side-menu-icon d-lg-none text-end">
+                  <div
+                    className="side-menu-icon d-lg-none text-end"
+                    style={{ marginRight: "20px" }}
+                  >
                     <a
                       style={{ cursor: "pointer" }}
                       onClick={() => setOpen(!open)}
