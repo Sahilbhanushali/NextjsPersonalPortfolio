@@ -33,7 +33,7 @@ export default function HeaderOne() {
                   </div>
                   <div
                     className="side-menu-icon d-lg-none text-end"
-                    style={{ marginRight: "20px" }}
+                    style={{ marginRight: "40px" }}
                   >
                     <a
                       style={{ cursor: "pointer" }}
