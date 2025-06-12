@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation, Variants } from "framer-motion"; // Import Variants type
 import toast, { Toaster } from "react-hot-toast";
 
 export default function ContactArea() {
@@ -34,15 +34,15 @@ export default function ContactArea() {
     margin: "-20% 0px",
   });
 
-  // Animation variants
-  const textVariants = {
+  // Animation variants with explicit typing
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: "easeOut", // Valid Framer Motion easing
         delay: i * 0.2,
       },
     }),
