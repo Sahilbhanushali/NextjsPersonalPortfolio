@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation, Variants } from "framer-motion"; // Import Variants type
 
 export default function FooterOne() {
   const footerRef = useRef<HTMLElement | null>(null);
@@ -14,14 +14,15 @@ export default function FooterOne() {
     margin: "-20% 0px",
   });
 
-  const linkVariants = {
+  // Explicitly type linkVariants as Variants
+  const linkVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 1,
-        ease: "easeOut",
+        ease: "easeOut", // Valid Framer Motion easing
       },
     },
   };
