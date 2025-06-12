@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useInView, useAnimation, Variants } from "framer-motion"; // Import Variants type
 import Count from "../common/Count";
 
 const counter_data = [
@@ -29,7 +29,8 @@ export default function AboutArea() {
     "I'm highly adaptable, love collaborating with teams, and constantly seek out new technologies to improve user and business outcomes.",
   ];
 
-  const textVariants = {
+  // Explicitly type the variants as Variants from Framer Motion
+  const textVariants: Variants = {
     hidden: { opacity: 0, x: -30 },
     visible: (i: number) => ({
       opacity: 1,
@@ -38,7 +39,7 @@ export default function AboutArea() {
     }),
   };
 
-  const counterVariants = {
+  const counterVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
       opacity: 1,
@@ -50,15 +51,15 @@ export default function AboutArea() {
   // Handle in-view animations
   useEffect(() => {
     preTitleControls.start(preTitleInView ? "visible" : "hidden");
-  }, [preTitleInView]);
+  }, [preTitleInView, preTitleControls]);
 
   useEffect(() => {
     contentControls.start(contentInView ? "visible" : "hidden");
-  }, [contentInView]);
+  }, [contentInView, contentControls]);
 
   useEffect(() => {
     countersControls.start(countersInView ? "visible" : "hidden");
-  }, [countersInView]);
+  }, [countersInView, countersControls]);
 
   // Fallback trigger after mount to ensure animations happen on navigation
   useEffect(() => {
@@ -68,7 +69,7 @@ export default function AboutArea() {
       countersControls.start("visible");
     }, 300);
     return () => clearTimeout(timer);
-  }, []);
+  }, [preTitleControls, contentControls, countersControls]);
 
   return (
     <section id="about" className="about-area">
