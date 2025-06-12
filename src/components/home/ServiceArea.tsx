@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation, Variants } from "framer-motion"; // Import Variants type
 
 export default function ServiceArea() {
   const sectionTitleRef = useRef(null);
@@ -19,26 +19,28 @@ export default function ServiceArea() {
     margin: "-20% 0px",
   });
 
-  const titleVariants = {
+  // Explicitly type titleVariants as Variants
+  const titleVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: "easeOut", // Valid Framer Motion easing
       },
     },
   };
 
-  const itemVariants = {
+  // Explicitly type itemVariants as Variants
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
         duration: 1,
-        ease: "easeOut",
+        ease: "easeOut", // Valid Framer Motion easing
         delay: i * 0.2,
       },
     }),
