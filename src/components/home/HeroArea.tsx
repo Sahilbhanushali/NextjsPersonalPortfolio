@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation, Variants } from "framer-motion"; // Import Variants type
 import Link from "next/link";
 
 export default function HeroArea() {
@@ -34,46 +34,46 @@ export default function HeroArea() {
     margin: "-10% 0px",
   });
 
-  // Text animation variant
-  const textVariants = {
+  // Text animation variant with explicit typing
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: "100%" },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: "easeOut", // Valid Framer Motion easing
         delay: i * 0.1,
       },
     }),
   };
 
-  // Image animation variant
-  const imageVariants = {
+  // Image animation variant with explicit typing
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 1.2, ease: [0.6, -0.05, 0.01, 0.99] },
+      transition: { duration: 1.2, ease: [0.6, -0.05, 0.01, 0.99] }, // Cubic bezier easing
     },
   };
 
   // Trigger animations
   useEffect(() => {
     headingControls.start(headingInView ? "visible" : "hidden");
-  }, [headingInView]);
+  }, [headingInView, headingControls]);
 
   useEffect(() => {
     paragraphControls.start(paragraphInView ? "visible" : "hidden");
-  }, [paragraphInView]);
+  }, [paragraphInView, paragraphControls]);
 
   useEffect(() => {
     imageControls.start(imageInView ? "visible" : "hidden");
-  }, [imageInView]);
+  }, [imageInView, imageControls]);
 
   useEffect(() => {
     clientReviewsControls.start(clientReviewsInView ? "visible" : "hidden");
-  }, [clientReviewsInView]);
+  }, [clientReviewsInView, clientReviewsControls]);
 
   // Fallback trigger on mount
   useEffect(() => {
@@ -85,7 +85,12 @@ export default function HeroArea() {
       clientReviewsControls.start("visible");
     }, 100);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [
+    headingControls,
+    paragraphControls,
+    imageControls,
+    clientReviewsControls,
+  ]);
 
   const headingText = "Sahil Bhanushali".split(" ");
   const paragraphText = [
@@ -127,6 +132,7 @@ export default function HeroArea() {
         <div className="row">
           {/* Left Column */}
           <div className="col-lg-3 pt-30">
+            {/* Uncomment if you want to use the client reviews section */}
             {/* <div className="hero-content" ref={clientReviewsRef}>
               {clientReviewsText.map((line, index) => (
                 <motion.div
