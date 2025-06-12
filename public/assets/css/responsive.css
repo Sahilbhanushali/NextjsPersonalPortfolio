@@ -1,5 +1,11 @@
 /* Medium Layout: 1280px. */
 
+@media (max-width: 562px) {
+  .side-menu-icon.d-lg-none.text-end {
+    margin-right: 45px;
+  }
+}
+
 @media only screen and (min-width: 992px) and (max-width: 1280px) {
   .hero-content {
     padding: 0;
