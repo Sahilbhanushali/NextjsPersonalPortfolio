@@ -70,7 +70,22 @@ body {
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
 }
-
+.main-hero-area,
+.hero-content,
+.hero-image {
+  overflow: visible !important;
+}
+motion.span {
+  overflow: visible;
+}
+.Toastify__toast--success {
+  background: #28a745 !important;
+  color: white !important;
+}
+.Toastify__toast--error {
+  background: #dc3545 !important;
+  color: white !important;
+}
 h1,
 .h1,
 h2,
