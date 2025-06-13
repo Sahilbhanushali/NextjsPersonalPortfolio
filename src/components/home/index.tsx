@@ -22,7 +22,7 @@ export default function Home() {
             <AboutArea />
             <ServiceArea />
             <PortfolioArea />
-            <TestimonoalArea />
+            {/* <TestimonoalArea /> */}
             {/* <BlogArea /> */}
             <ContactArea />
           </main>

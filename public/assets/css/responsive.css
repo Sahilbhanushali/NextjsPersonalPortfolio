@@ -285,7 +285,7 @@
   }
 
   .footer-top h2 {
-    font-size: 120px;
+    font-size: 112px;
     line-height: 1em;
   }
 
@@ -424,7 +424,7 @@
   }
 
   .hero-content h2 {
-    font-size: 60px;
+    font-size: 55px;
   }
 
   .hero-image img {
@@ -1076,7 +1076,7 @@
     align-items: center;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
-    justify-content: start;
+    justify-content: flex-start;
   }
 }
 

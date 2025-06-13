@@ -11,7 +11,7 @@ export default function Contact() {
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <main>
-            <Breadcrumb title="Hire Me Before Netflix Does" style_3={true} />
+            <Breadcrumb title="Hire Me Before Amazon Does" style_3={true} />
             <ContactArea />
           </main>
           <FooterOne />

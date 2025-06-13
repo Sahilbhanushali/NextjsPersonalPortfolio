@@ -1,12 +1,5 @@
 /*
-* ----------------------------------------------------------------------------------------
-Author       : Tanvir Hossain
-Template Name: Nino - Premium Portfolio Template
-Version      : 1.0                                          
-* ----------------------------------------------------------------------------------------
-*/
 
-/*
 * ----------------------------------------------------------------------------------------
 * 01.GLOBAL CSS STYLE
 * 02.COMMON CSS STYLE
@@ -1146,14 +1139,14 @@ html {
 
 .sidebar__close {
   position: absolute;
-  top: 35px;
-  right: 45px;
+  top: 21px;
+  right: 75px;
 }
 
 @media (max-width: 575px) {
   .sidebar__close {
-    top: 12px;
-    right: 20px;
+    top: 1px;
+    right: 42px;
   }
 }
 
@@ -1314,13 +1307,13 @@ html {
   border-radius: 20px;
   border: 3px solid #fff;
   margin-top: -100px;
-  rotate: 10deg;
+  transform: 10deg;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 .hero-image img:hover {
-  rotate: 0deg;
+  transform: 0deg;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
