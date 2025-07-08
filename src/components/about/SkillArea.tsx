@@ -10,7 +10,7 @@ export default function SkillArea() {
               <div className="col-xl-12 col-lg-12">
                 <div className="section-title section-black-title mb-40 wow fadeInUp delay-0-2s">
                   <h2>
-                    Skills I Have (and no, they're not all copy-pasted from
+                    Skills I Have (and no, they're not all copy pasted from
                     Stack Overflow)
                   </h2>
                 </div>
@@ -77,15 +77,7 @@ export default function SkillArea() {
                         <h5>Php</h5>
                       </div>
                     </div>
-                    <div className="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
-                      <div className="skill-item wow fadeInUp delay-0-5s">
-                        <img
-                          src="assets/images/skills/Laravel.png"
-                          alt="Skill"
-                        />
-                        <h5>Laravel</h5>
-                      </div>
-                    </div>
+
                     <div className="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                       <div className="skill-item wow fadeInUp delay-0-5s">
                         <img src="assets/images/skills/MySQL.png" alt="Skill" />

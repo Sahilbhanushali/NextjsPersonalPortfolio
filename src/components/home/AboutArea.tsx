@@ -6,7 +6,6 @@ import Count from "../common/Count";
 const counter_data = [
   { id: 1, title: "Years Of Experience", count: 1.5, cls: "plus" },
   { id: 2, title: "Completed Projects", count: 20, cls: "plus" },
-  { id: 3, title: "Client Satisfactions", count: 100, cls: "percent" },
 ];
 
 export default function AboutArea() {
@@ -23,7 +22,7 @@ export default function AboutArea() {
   const countersInView = useInView(countersRef, { margin: "-20% 0px" });
 
   const paragraphText = [
-    "I'm a full stack developer from Gujarat with hands on experience in CRM and its automation and a growing proficiency in the MERN stack and Next.js (MongoDB, Express, React, Node.js).",
+    "I'm a full stack developer from Gujarat with hands on experience in CRM and its automation and a growing proficiency in the Modern Javascript Technologies (MongoDB, Express, React, Node.js).",
     "I thrive in solving real world problems and building custom web solutions as well as Enterprise Solutions.",
     "I recently completed my Bachelor's in Computer Science (March 2025) and have worked on impactful CRM and automation projects during my roles at Niket Communications and ItsmeDezino.",
     "I'm highly adaptable, love collaborating with teams, and constantly seek out new technologies to improve user and business outcomes.",

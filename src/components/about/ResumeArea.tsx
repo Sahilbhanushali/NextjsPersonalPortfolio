@@ -10,7 +10,7 @@ export default function ResumeArea() {
             <div className="col-xl-6 col-md-6">
               <div className="resume-wrapper wow fadeInUp delay-0-2s">
                 <div className="resume-box">
-                  <span className="resume-date">Jan 2025 - May 2025</span>
+                  <span className="resume-date">Jan 2025 - Jun 2025</span>
                   <h2>Web Developer</h2>
                   <span>@ itsmeDezino, Thane, Mumbai</span>
                   <p>

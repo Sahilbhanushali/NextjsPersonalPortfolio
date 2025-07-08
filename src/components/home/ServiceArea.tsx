@@ -78,35 +78,35 @@ export default function ServiceArea() {
       number: "02",
       title: "App Development",
       description:
-        "Need an app? I'll craft one so slick it'll make your users forget how to blink. Cross-platform, bug-free (mostly), and ready to dominate the app stores before you finish your coffee.",
+        "Need an app? I'll help craft one so slick it'll make your users forget how to blink. Cross platform, bug free (mostly), and ready to dominate the app stores before you finish your coffee.",
     },
     {
       id: 3,
       number: "03",
       title: "Customized Software",
       description:
-        "Generic software? Please. I'll build you a bespoke solution so tailored it fits your business like a glove—except it won't get lost in the laundry. Efficiency, scalability, and a touch of swagger included.",
+        "Generic software? I'll build you a bespoke solution so tailored it fits your business like a glove except it won't get lost in the laundry. Efficiency, scalability, and a touch of swagger included.",
     },
     {
       id: 4,
       number: "04",
       title: "CRM / Enterprise Solutions",
       description:
-        "Big company, bigger problems? I'll deliver enterprise-grade systems so robust they could probably run your company for you. Streamlined workflows, automation, and zero tolerance for corporate nonsense.",
+        "Big company, bigger problems? I can deliver enterprise grade systems so robust they could probably run your company for you. Streamlined workflows, automation, and zero tolerance for corporate nonsense.",
     },
     {
       id: 5,
       number: "05",
       title: "PowerBI Dashboards",
       description:
-        "Data boring you? My PowerBI dashboards will turn your numbers into visual eye candy so stunning you'll actually enjoy your Monday reports. Interactive, insightful, and way too pretty for a spreadsheet.",
+        "Data boring you? i can provide PowerBI dashboards will turn your numbers into visual eye candy so stunning you'll actually enjoy your Monday reports. Interactive, insightful, and way too pretty for a spreadsheet.",
     },
     {
       id: 6,
       number: "06",
       title: "AI Models",
       description:
-        "Want AI that’s smarter than your average intern? I’ll build models that predict, optimize, and maybe even roast your competitors.",
+        "Want AI that’s smarter than your average intern? i can help you build models that predict, optimize, and maybe even roast your competitors.",
     },
   ];
 
