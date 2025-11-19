@@ -1,25 +1,23 @@
-// import HeaderOne from '@/layouts/headers/HeaderOne'
-// import React from 'react'
-// import Breadcrumb from '../common/Breadcrumb'
-// import SingleProjectArea from './SingleProjectArea'
-// import FooterOne from '@/layouts/footers/FooterOne'
+import React from "react";
+import HeaderOne from "@/layouts/headers/HeaderOne";
+import FooterOne from "@/layouts/footers/FooterOne";
+import Breadcrumb from "../common/Breadcrumb";
+import SingleProjectArea from "./SingleProjectArea";
 
-// export default function SingleProject() {
-//   return (
-//     <>
+export default function SingleProject() {
+  return (
+    <>
+      <HeaderOne />
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          <main>
+            <Breadcrumb title="Project Details" style_3 />
+            <SingleProjectArea />
+          </main>
+          <FooterOne />
+        </div>
+      </div>
+    </>
+  );
+}
 
-
-//       <HeaderOne />
-//       <div id="smooth-wrapper">
-//         <div id="smooth-content">
-//           <main>
-//             <Breadcrumb title="Branch with Flowers" style_3={true} />
-//             <SingleProjectArea />
-//           </main>
-//           <FooterOne />
-//         </div>
-//       </div>
-
-//     </>
-//   )
-// }

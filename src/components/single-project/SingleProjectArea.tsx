@@ -1,115 +1,111 @@
-// "use client";
-// import React, { useState } from 'react'
-// import img_1 from "@/assets/images/projects/work1.jpg";
-// import img_2 from "@/assets/images/projects/work2.jpg";
-// import img_3 from "@/assets/images/projects/work3.jpg";
-// import img_4 from "@/assets/images/projects/work4.jpg";
-// import Image from 'next/image';
-// import ImagePopup from '@/modals/ImagePopup';
+"use client";
 
-// const portfolio_images = [
-//   {
-//     id: 1,
-//     image: img_1,
-//   },
-//   {
-//     id: 2,
-//     image: img_2,
-//   },
-//   {
-//     id: 3,
-//     image: img_3,
-//   },
-//   {
-//     id: 4,
-//     image: img_4,
-//   },
-// ]
+import React, { useState } from "react";
+import Image from "next/image";
+import ImagePopup from "@/modals/ImagePopup";
 
-// export default function SingleProjectArea() {
+import heroImage from "@/assets/images/projects/Pasted image.tmp.png";
+import galleryImage1 from "@/assets/images/projects/Pasted_tmp2_jpg.png";
+import galleryImage2 from "@/assets/images/projects/Pasted image (2).png";
+import galleryImage3 from "@/assets/images/projects/Pasted image (3).png";
+import galleryImage4 from "@/assets/images/projects/Pasted image (4).png";
 
-//   // photoIndex
-//   const [photoIndex, setPhotoIndex] = useState(null);
-//   // image open state
-//   const [isOpen, setIsOpen] = useState(false);
-//   // handleImagePopup
-//   const handleImagePopup = (i: any) => {
-//     setPhotoIndex(i);
-//     setIsOpen(true);
-//   };
-//   //  images
-//   const image = portfolio_images.slice(0, 5).map((item) => item.image.src);
+const projectFacts = [
+  { label: "Year", value: "2024" },
+  { label: "Client", value: "Bento Studio" },
+  { label: "Services", value: "Web Design" },
+  { label: "Project", value: "Creative" },
+];
 
+const galleryImages = [
+  { id: 1, image: heroImage },
+  { id: 2, image: galleryImage1 },
+  { id: 3, image: galleryImage2 },
+  { id: 4, image: galleryImage3 },
+  { id: 5, image: galleryImage4 },
+];
 
-//   return (
-//     <>
-//       <div className="single-project-page-design">
-//         <div className="single-project-image">
-//           <img src="assets/images/projects/work2.jpg" alt="image" />
-//         </div>
-//         <div className="container pt-60 pb-40">
-//           <div className="row">
-//             <div className="col-lg-4">
+export default function SingleProjectArea() {
+  const [photoIndex, setPhotoIndex] = useState<number | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-//               <div className="single-project-page-left wow fadeInUp delay-0-2s">
-//                 <div className="single-info">
-//                   <p>Year</p>
-//                   <h3>2024</h3>
-//                 </div>
-//                 <div className="single-info">
-//                   <p>Client</p>
-//                   <h3>Bento Studio</h3>
-//                 </div>
-//                 <div className="single-info">
-//                   <p>Services</p>
-//                   <h3>Web Design</h3>
-//                 </div>
-//                 <div className="single-info">
-//                   <p>Project</p>
-//                   <h3>Creative</h3>
-//                 </div>
-//               </div>
+  const handleImagePopup = (index: number) => {
+    setPhotoIndex(index);
+    setIsOpen(true);
+  };
 
-//             </div>
+  const images = galleryImages.map((item) => item.image.src);
 
-//             <div className="col-lg-8">
-//               <div className="single-project-page-right wow fadeInUp delay-0-4s">
-//                 <h2>
-//                   Description
-//                 </h2>
-//                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit utsadi sfejdis aliquam, purus sit amet luctus venenatis, lectus magna sansit trandis fringilla urna, porttitor rhoncus dolor purus non enim dollors praesent tabasi elementum facilisis leo.</p>
-//                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable sourc consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-//               </div>
-//             </div>
+  return (
+    <>
+      <div className="single-project-page-design">
+        <div className="single-project-image">
+          <Image src={heroImage} alt="Project overview" priority style={{ width: "100%", height: "auto" }} />
+        </div>
+        <div className="container pt-60 pb-40">
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="single-project-page-left wow fadeInUp delay-0-2s">
+                {projectFacts.map((fact) => (
+                  <div className="single-info" key={fact.label}>
+                    <p>{fact.label}</p>
+                    <h3>{fact.value}</h3>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-//           </div>
+            <div className="col-lg-8">
+              <div className="single-project-page-right wow fadeInUp delay-0-4s">
+                <h2>Description</h2>
+                <p>
+                  This case study walks through the design and engineering process we follow for bespoke client projects.
+                  We focus on crafting flexible design systems, performant interfaces, and delightful interactions rooted in
+                  real business goals.
+                </p>
+                <p>
+                  Beyond the visuals, we document decisions, track KPIs after launch, and continuously iterate. The result is
+                  a measurable uplift for the client and a reusable foundation for the next project.
+                </p>
+              </div>
+            </div>
+          </div>
 
-//           <div className="row pt-60">
-//             {portfolio_images.map((item, i) => (
-//               <div className="col-lg-6">
-//                 <a style={{ cursor: "pointer" }}
-//                   onClick={() => handleImagePopup(i)} className="work-popup">
-//                   <div className="single-image wow fadeInUp delay-0-2s">
-//                     <Image src={item.image} style={{ height: "auto" }} alt="gallery" />
-//                   </div>
-//                 </a>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
+          <div className="row pt-60">
+            {galleryImages.map((item, index) => (
+              <div className="col-lg-6" key={item.id}>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  className="work-popup"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleImagePopup(index)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      handleImagePopup(index);
+                    }
+                  }}
+                >
+                  <div className="single-image wow fadeInUp delay-0-2s">
+                    <Image src={item.image} alt={`Gallery image ${index + 1}`} style={{ height: "auto" }} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-//       {/* image light box start */}
-//       {isOpen && (
-//         <ImagePopup
-//           images={image}
-//           setIsOpen={setIsOpen}
-//           photoIndex={photoIndex}
-//           setPhotoIndex={setPhotoIndex}
-//         />
-//       )}
-//       {/* image light box end */}
+      {isOpen && photoIndex !== null && (
+        <ImagePopup
+          images={images}
+          setIsOpen={setIsOpen}
+          photoIndex={photoIndex}
+          setPhotoIndex={setPhotoIndex}
+        />
+      )}
+    </>
+  );
+}
 
-//     </>
-//   )
-// }
