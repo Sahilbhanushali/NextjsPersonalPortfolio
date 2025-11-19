@@ -1989,6 +1989,22 @@ ul.extra-skills li i {
   text-shadow: 0 0 white;
 }
 
+.portfolio-box .portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: white;
+}
+
+.portfolio-box .portfolio-link i {
+  font-size: 1em;
+}
+
 .portfolio-box:hover:after {
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";

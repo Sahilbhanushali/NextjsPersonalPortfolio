@@ -1,72 +1,97 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import Link from "next/link";
+import React, { KeyboardEvent, useState } from "react";
 import ImagePopup from "@/modals/ImagePopup";
 
-import portfolio_img_1 from "@/assets/images/projects/project-1.png";
-import portfolio_img_2 from "@/assets/images/projects/project-2.png";
-import portfolio_img_3 from "@/assets/images/projects/project-3.png";
-import portfolio_img_4 from "@/assets/images/projects/project-4.png";
-import portfolio_img_5 from "@/assets/images/projects/project-5.png";
+import Pasted_tmp_jpg from "@/assets/images/projects/Pasted image.tmp.png";
+import Pasted_tmp2_jpg from "@/assets/images/projects/Pasted_tmp2_jpg.png";
+import Pasted_image_4 from "@/assets/images/projects/Pasted image (4).png";
+import Pasted_image_3 from "@/assets/images/projects/Pasted image (3).png";
+import Pasted_image_2 from "@/assets/images/projects/Pasted image (2).png";
+
 
 interface DataType {
   id: number;
   col: string;
   image: StaticImageData;
+  gallery?: StaticImageData[];
   title: string;
   category: string;
+  link?: string;
+  linkLabel?: string;
 }
 
 const portfolio_data: DataType[] = [
   {
     id: 1,
     col: "6",
-    image: portfolio_img_1,
-    title: "Admin Dashboard",
+    image: Pasted_tmp_jpg,          // main image shown on card
+    gallery: [Pasted_tmp_jpg, Pasted_tmp2_jpg], // images for popup
+    title: "Real Time Chat Application",
     category: "MERN",
+    link: "https://mern-chat-app-hmny.onrender.com/",
+    linkLabel: "View Project",
   },
   {
     id: 2,
     col: "6",
-    image: portfolio_img_2,
-    title: "Chat Application",
+    image: Pasted_image_4,          // main image shown on card
+    gallery: [Pasted_tmp_jpg, Pasted_tmp2_jpg], // images for popup
+    title: "Task Manager Application",
     category: "MERN",
+    link: "https://taskmanager-1-nna7.onrender.com/",
+    linkLabel: "View Project",
   },
   {
     id: 3,
-    col: "4",
-    image: portfolio_img_3,
-    title: "Task Management",
-    category: "NEXT js",
-  },
-  {
-    id: 4,
-    col: "4",
-    image: portfolio_img_4,
-    title: "Eccommerce Website",
-    category: "Wordpress Elementor",
-  },
-  {
-    id: 5,
-    col: "4",
-    image: portfolio_img_5,
-    title: "CRM ",
-    category: "php",
+    col: "6",
+    image: Pasted_image_3,          // main image shown on card
+    gallery: [Pasted_image_2], // images for popup
+    title: "Job Importer Application",
+    category: "MERN",
+    link: "https://job-importer-system-front.onrender.com/",
+    linkLabel: "View Project",
   },
 ];
 
 export default function PortfolioArea() {
-  // photoIndex
-  const [photoIndex, setPhotoIndex] = useState(null);
-  // image open state
+  const [photoIndex, setPhotoIndex] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  // handleImagePopup
-  const handleImagePopup = (i: any) => {
-    setPhotoIndex(i);
-    setIsOpen(true);
+const [galleryImages, setGalleryImages] = useState<string[]>([]);
+
+const handleImagePopup = (index: number) => {
+  const project = portfolio_data[index];
+  if (!project) return;
+
+  const combinedImages = [
+    project.image,
+    ...(project.gallery ?? []),
+  ].map((img) => img.src);
+
+  const seen = new Set<string>();
+  const uniqueImages = combinedImages.filter((src) => {
+    if (seen.has(src)) return false;
+    seen.add(src);
+    return true;
+  });
+
+  if (!uniqueImages.length) return;
+
+  setGalleryImages(uniqueImages);
+  setPhotoIndex(0);
+  setIsOpen(true);
+};
+
+  const handleKeydown = (
+    event: KeyboardEvent<HTMLDivElement>,
+    callback: () => void
+  ) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      callback();
+    }
   };
-  //  images
-  const image = portfolio_data.slice(0, 5).map((item) => item.image.src);
 
   return (
     <>
@@ -74,47 +99,65 @@ export default function PortfolioArea() {
         <div className="custom-icon">
           <img src="assets/images/custom/work-scribble.svg" alt="custom" />
         </div>
+
         <div className="container-fluid">
           <div className="row g-4 portfolio-grid">
             {portfolio_data.map((item, i) => (
               <div
-                key={i}
+                key={item.id}
                 className={`col-md-6 col-xl-${item.col} portfolio-item category-1`}
               >
-                <a
+                <div
+                  role="button"
+                  tabIndex={0}
                   style={{ cursor: "pointer" }}
                   onClick={() => handleImagePopup(i)}
+                  onKeyDown={(event) =>
+                    handleKeydown(event, () => handleImagePopup(i))
+                  }
                   className="work-popup"
                 >
                   <div className="portfolio-box">
                     <Image
                       src={item.image}
-                      alt=""
+                      alt={item.title}
                       style={{ height: "auto" }}
                       data-rjs="2"
                     />
                     <span className="portfolio-category">{item.category}</span>
+
                     <div className="portfolio-caption">
                       <h1>{item.title}</h1>
+
+                      {item.link && (
+                        <Link
+                          href={item.link}
+                          className="portfolio-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {item.linkLabel ?? "View Project"}
+                          <i className="ri-arrow-right-up-line" aria-hidden="true" />
+                        </Link>
+                      )}
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* image light box start */}
-      {isOpen && (
+        {isOpen && photoIndex !== null && (
         <ImagePopup
-          images={image}
+            images={galleryImages}
           setIsOpen={setIsOpen}
           photoIndex={photoIndex}
           setPhotoIndex={setPhotoIndex}
         />
       )}
-      {/* image light box end */}
     </>
   );
 }
