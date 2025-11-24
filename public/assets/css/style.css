@@ -2491,6 +2491,24 @@ p.copy-right-text {
   text-align: center;
 }
 
+.resume-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #ff6b00;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.resume-btn:hover {
+  background: #e85e00;
+  transform: translateY(-3px);
+}
+.footer-top {
+  text-align: center;
+}
 /*
 * ----------------------------------------------------------------------------------------
 * 15.PRELOADER & BOUNCE CCS STYLE

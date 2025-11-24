@@ -14,9 +14,7 @@ export default function ResumeArea() {
                   <h2>Web Developer</h2>
                   <span>@ itsmeDezino, Thane, Mumbai</span>
                   <p>
-                    Developed custom dashboards, websites and various modules
-                    for enhanced management. Participated in project planning
-                    meetings and discuss changes.
+                    Delivered React/Next.js dashboard and custom websites for clients, reducing turnaround time for project reporting.
                   </p>
                 </div>
 

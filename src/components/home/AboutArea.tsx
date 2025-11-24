@@ -22,10 +22,7 @@ export default function AboutArea() {
   const countersInView = useInView(countersRef, { margin: "-20% 0px" });
 
   const paragraphText = [
-    "I'm a full stack developer from Gujarat with hands on experience in CRM and its automation and a growing proficiency in the Modern Javascript Technologies (MongoDB, Express, React, Node.js).",
-    "I thrive in solving real world problems and building custom web solutions as well as Enterprise Solutions.",
-    "I recently completed my Bachelor's in Computer Science (March 2025) and have worked on impactful CRM and automation projects during my roles at Niket Communications and ItsmeDezino.",
-    "I'm highly adaptable, love collaborating with teams, and constantly seek out new technologies to improve user and business outcomes.",
+    "Full-Stack Developer specializing in the MERN stack with real experience building production dashboards, workflow automation, and real time systems. I love turning messy business problems into clean, usable software especially when it replaces manual work. Fast learner, quick to ship, and always hungry to improve.",
   ];
 
   // Explicitly type the variants as Variants from Framer Motion
