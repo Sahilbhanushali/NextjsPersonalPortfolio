@@ -20,7 +20,7 @@ export default function HeaderOne() {
                   <div className="logo-area">
                     <div className="logo">
                       <Link href="/">
-                        <img src="assets/images/logo.png" alt="" />
+                        <img src="assets/images/logo-no-bg.png" alt="sahil-logo" />
                       </Link>
                     </div>
                   </div>
