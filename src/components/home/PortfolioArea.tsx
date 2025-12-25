@@ -9,6 +9,9 @@ import Pasted_tmp2_jpg from "@/assets/images/projects/Pasted_tmp2_jpg.png";
 import Pasted_image_4 from "@/assets/images/projects/Pasted image (4).png";
 import Pasted_image_3 from "@/assets/images/projects/Pasted image (3).png";
 import Pasted_image_2 from "@/assets/images/projects/Pasted image (2).png";
+import gg1 from "@/assets/images/projects/gg1.png"
+import gg2 from "@/assets/images/projects/gg2.png"
+import gg3 from "@/assets/images/projects/gg3.png"
 
 
 interface DataType {
@@ -26,8 +29,8 @@ const portfolio_data: DataType[] = [
   {
     id: 1,
     col: "6",
-    image: Pasted_tmp_jpg,          // main image shown on card
-    gallery: [Pasted_tmp_jpg, Pasted_tmp2_jpg], // images for popup
+    image: Pasted_tmp_jpg,
+    gallery: [Pasted_tmp_jpg, Pasted_tmp2_jpg],
     title: "Real Time Chat Application",
     category: "MERN",
     link: "https://mern-chat-app-hmny.onrender.com/",
@@ -36,8 +39,8 @@ const portfolio_data: DataType[] = [
   {
     id: 2,
     col: "6",
-    image: Pasted_image_4,          // main image shown on card
-    gallery: [Pasted_tmp_jpg, Pasted_tmp2_jpg], // images for popup
+    image: Pasted_image_4,
+    gallery: [Pasted_tmp_jpg, Pasted_tmp2_jpg],
     title: "Task Manager Application",
     category: "MERN",
     link: "https://taskmanager-1-nna7.onrender.com/",
@@ -46,11 +49,21 @@ const portfolio_data: DataType[] = [
   {
     id: 3,
     col: "6",
-    image: Pasted_image_3,          // main image shown on card
-    gallery: [Pasted_image_2], // images for popup
+    image: Pasted_image_3,
+    gallery: [Pasted_image_2],
     title: "Job Importer Application",
     category: "MERN",
     link: "https://job-importer-system-front.onrender.com/",
+    linkLabel: "View Project",
+  },
+  {
+    id: 4,
+    col: "6",
+    image: gg1,
+    gallery: [gg2, gg3],
+    title: "Grocery Ecommerce Application",
+    category: "React Laravel",
+    link: "https://ghargrocer.com/",
     linkLabel: "View Project",
   },
 ];
@@ -58,30 +71,30 @@ const portfolio_data: DataType[] = [
 export default function PortfolioArea() {
   const [photoIndex, setPhotoIndex] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
 
-const handleImagePopup = (index: number) => {
-  const project = portfolio_data[index];
-  if (!project) return;
+  const handleImagePopup = (index: number) => {
+    const project = portfolio_data[index];
+    if (!project) return;
 
-  const combinedImages = [
-    project.image,
-    ...(project.gallery ?? []),
-  ].map((img) => img.src);
+    const combinedImages = [
+      project.image,
+      ...(project.gallery ?? []),
+    ].map((img) => img.src);
 
-  const seen = new Set<string>();
-  const uniqueImages = combinedImages.filter((src) => {
-    if (seen.has(src)) return false;
-    seen.add(src);
-    return true;
-  });
+    const seen = new Set<string>();
+    const uniqueImages = combinedImages.filter((src) => {
+      if (seen.has(src)) return false;
+      seen.add(src);
+      return true;
+    });
 
-  if (!uniqueImages.length) return;
+    if (!uniqueImages.length) return;
 
-  setGalleryImages(uniqueImages);
-  setPhotoIndex(0);
-  setIsOpen(true);
-};
+    setGalleryImages(uniqueImages);
+    setPhotoIndex(0);
+    setIsOpen(true);
+  };
 
   const handleKeydown = (
     event: KeyboardEvent<HTMLDivElement>,
@@ -150,9 +163,9 @@ const handleImagePopup = (index: number) => {
         </div>
       </div>
 
-        {isOpen && photoIndex !== null && (
+      {isOpen && photoIndex !== null && (
         <ImagePopup
-            images={galleryImages}
+          images={galleryImages}
           setIsOpen={setIsOpen}
           photoIndex={photoIndex}
           setPhotoIndex={setPhotoIndex}
