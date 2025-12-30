@@ -20,7 +20,7 @@ export default function FooterOne() {
     letsWorkControls.start("visible");
   }, [letsWorkControls]);
 
-  // Canvas animation
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const footer = footerRef.current;
@@ -42,13 +42,20 @@ export default function FooterOne() {
     window.addEventListener("resize", resizeCanvas);
 
     const messages = [
-      "Email me, ugh", "Ping me, now!", "Text me, bored", "Call? Maybe.",
-      "DMs, no spam", "Don't ghost me", "I'm fun, chat!", "Send help!",
-      "Slide in inbox", "I might reply",
+      "Email me!",
+      "Let's Talk",
+      "Say Hi!",
+      "Connect",
+      "Chat Now",
+      "Reach Out",
+      "Get In Touch!",
+      "Message Me",
+      "Let's Work",
+      "Contact!",
     ];
 
     const boxes: any[] = [];
-    const colors = ["#FF6B00", "#4ECDC4", "#45B7D5", "#96CEB4", "#FFEEAD"];
+    const colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7", "#A29BFE", "#FD79A8"];
 
     function throttle(func: any, limit: number) {
       let lastFunc: any, lastRan: number;
@@ -74,77 +81,115 @@ export default function FooterOne() {
       const y = e.clientY - rect.top;
 
       if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+        const text = messages[Math.floor(Math.random() * messages.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+
+        ctx.font = "bold 16px Arial";
+        const textWidth = ctx.measureText(text).width;
+        const padding = 30;
+        const boxWidth = textWidth + padding;
+        const boxHeight = 45;
+
         boxes.push({
           x,
           y,
-          size: Math.random() * 20 + 20,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          width: boxWidth,
+          height: boxHeight,
+          color,
           alpha: 1,
-          text: messages[Math.floor(Math.random() * messages.length)],
+          text,
+          rotation: (Math.random() - 0.5) * 0.2,
+          scale: 1,
         });
       }
-    }, 50);
+    }, 80);
 
-    const wrapText = (ctx: any, text: string, maxWidth: number): string[] => {
-      const words = text.split(" ");
-      const lines: string[] = [];
-      let currentLine = words[0];
-
-      for (let i = 1; i < words.length; i++) {
-        const test = `${currentLine} ${words[i]}`;
-        if (ctx.measureText(test).width < maxWidth) currentLine = test;
-        else { lines.push(currentLine); currentLine = words[i]; }
-      }
-      lines.push(currentLine);
-      return lines;
-    };
+    let animationId: number;
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = boxes.length - 1; i >= 0; i--) {
         const b = boxes[i];
-        b.alpha -= 0.015;
-        b.size *= 0.98;
-        b.y -= 1;
+        b.alpha -= 0.01;
+        b.y -= 2;
+        b.scale += 0.005;
 
+        if (b.alpha <= 0) {
+          boxes.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
         ctx.globalAlpha = b.alpha;
-        ctx.fillStyle = b.color;
-        ctx.fillRect(b.x - b.size / 2, b.y - b.size / 2, b.size, b.size);
+        ctx.translate(b.x, b.y);
+        ctx.rotate(b.rotation);
+        ctx.scale(b.scale, b.scale);
 
-        ctx.font = `bold ${b.size * 0.6}px Helvetica`;
-        ctx.fillStyle = "#FFF";
-        ctx.strokeStyle = "#000";
-        ctx.lineWidth = 2;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 4;
+
+        const cornerRadius = 12;
+        const boxX = -b.width / 2;
+        const boxY = -b.height / 2;
+
+        ctx.beginPath();
+        ctx.moveTo(boxX + cornerRadius, boxY);
+        ctx.lineTo(boxX + b.width - cornerRadius, boxY);
+        ctx.arcTo(boxX + b.width, boxY, boxX + b.width, boxY + cornerRadius, cornerRadius);
+        ctx.lineTo(boxX + b.width, boxY + b.height - cornerRadius);
+        ctx.arcTo(boxX + b.width, boxY + b.height, boxX + b.width - cornerRadius, boxY + b.height, cornerRadius);
+        ctx.lineTo(boxX + cornerRadius, boxY + b.height);
+        ctx.arcTo(boxX, boxY + b.height, boxX, boxY + b.height - cornerRadius, cornerRadius);
+        ctx.lineTo(boxX, boxY + cornerRadius);
+        ctx.arcTo(boxX, boxY, boxX + cornerRadius, boxY, cornerRadius);
+        ctx.closePath();
+
+        // Gradient fill
+        const gradient = ctx.createLinearGradient(boxX, boxY, boxX + b.width, boxY + b.height);
+        gradient.addColorStop(0, b.color);
+        gradient.addColorStop(1, b.color + "DD");
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Reset shadow for text
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+
+        // Draw text
+        ctx.font = "bold 16px Arial";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.3)";
+        ctx.lineWidth = 3;
         ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
 
-        const lines = wrapText(ctx, b.text, b.size * 0.8);
-        const lineHeight = b.size * 0.6;
-        const startY = b.y - (lines.length * lineHeight) / 2 + lineHeight / 2;
+        // Text with subtle stroke
+        ctx.strokeText(b.text, 0, 0);
+        ctx.fillText(b.text, 0, 0);
 
-        lines.forEach((line, idx) => {
-          ctx.strokeText(line, b.x, startY + idx * lineHeight);
-          ctx.fillText(line, b.x, startY + idx * lineHeight);
-        });
-
-        if (b.alpha <= 0) boxes.splice(i, 1);
+        ctx.restore();
       }
 
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
-    footer.addEventListener("mouseenter", animate);
+    animate();
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", resizeCanvas);
-      footer.removeEventListener("mouseenter", animate);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 
   return (
-    <footer className="main-footer" ref={footerRef} style={{ position: "relative" }}>
+    <footer className="main-footer" ref={footerRef} style={{ position: "relative", overflow: "hidden" }}>
       <canvas ref={canvasRef} />
 
       <div className="container">
@@ -161,7 +206,7 @@ export default function FooterOne() {
 
           {/* Resume Button */}
           <motion.a
-            href="/Sahil_bhanushali_2.pdf"
+            href="/Sahil_Bhanushali.pdf"
             target="_blank"
             rel="noopener noreferrer"
             initial="hidden"
