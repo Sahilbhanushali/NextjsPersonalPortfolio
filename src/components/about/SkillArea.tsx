@@ -1,6 +1,28 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 
 export default function SkillArea() {
+
+  const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/skills`);
+        const data = await res.json();
+        setSkills(data);
+      } catch (error) {
+        console.error("Error fetching skills", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
+  }, []);
+
+
   return (
     <>
       <section id="skills" className="skill-area">
