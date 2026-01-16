@@ -4,8 +4,8 @@ import { motion, useInView, useAnimation, Variants } from "framer-motion"; // Im
 import Count from "../common/Count";
 
 const counter_data = [
-  { id: 1, title: "Years Of Experience", count: 1.5, cls: "plus" },
-  { id: 2, title: "Completed Projects", count: 20, cls: "plus" },
+  { id: 1, title: "Years Of Experience", count: 1, cls: "plus" },
+  { id: 2, title: "Completed Projects", count: 5, cls: "plus" },
 ];
 
 export default function AboutArea() {
