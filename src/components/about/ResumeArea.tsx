@@ -21,7 +21,7 @@ export default function ResumeArea() {
                 </div>
 
                 <div className="resume-box">
-                  <span className="resume-date">Sep 2023 - Jul 2024</span>
+                  <span className="resume-date">Sep 2023 - Aug 2024</span>
                   <h2>Junior Developer</h2>
                   <span>
                     @ Niket Communications and Security Systems, Gujarat
